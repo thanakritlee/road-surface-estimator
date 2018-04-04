@@ -3,13 +3,19 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { MapComponent } from './map/map.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { UserMapComponent } from './user-map/user-map.component';
+import { ServerMapComponent } from './server-map/server-map.component';
+import { MapOptionsComponent } from './user-map/map-options/map-options.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    NavigationBarComponent,
+    UserMapComponent,
+    ServerMapComponent,
+    MapOptionsComponent
   ],
   imports: [
     BrowserModule

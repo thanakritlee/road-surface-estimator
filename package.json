@@ -1,7 +1,7 @@
 {
   "name": "road-surface-estimator",
   "version": "1.0.0",
-  "description": "",
+  "description": "A web application that estimate the surface area of roads of a selected on a map.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/tlee38/road-surface-estimator/issues"
   },
-  "homepage": "https://github.com/tlee38/road-surface-estimator#readme"
+  "homepage": "https://github.com/tlee38/road-surface-estimator#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3"
+  }
 }
