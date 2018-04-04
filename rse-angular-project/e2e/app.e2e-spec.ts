@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('road-surface-estimator-angular-project App', () => {
+describe('rse-angular-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {

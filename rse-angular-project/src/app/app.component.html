@@ -1,5 +1,20 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div class="row pb-5">
+  <div class="col">
+    <app-navigation-bar></app-navigation-bar>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col text-center">
+    <app-user-map></app-user-map>
+  </div>
+  <div class="col text-center" *ngIf="calculated">
+    <app-server-map></app-server-map>
+  </div>
+</div>
+
+
+<!-- <div style="text-align:center" class="container-fluid">
   <h1>
     Welcome to {{ title }}!
   </h1>
@@ -16,5 +31,4 @@
   <li>
     <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
   </li>
-</ul>
-
+</ul> -->

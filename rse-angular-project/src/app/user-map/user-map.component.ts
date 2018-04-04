@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-user-map',
   templateUrl: './user-map.component.html',
-  styleUrls: ['./user-map.component.css']
+  styleUrls: ['./user-map.component.scss']
 })
 export class UserMapComponent implements OnInit {
 
@@ -11,5 +11,8 @@ export class UserMapComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  lat: number = 51.678418;
+  lng: number = 7.809007;
 
 }
