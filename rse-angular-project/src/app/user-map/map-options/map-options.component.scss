@@ -1,0 +1,13 @@
+/* 
+    Hide HTML5 Up and Down arrows. 
+    Use to hide the arrow in the latitude and longitude input field.
+*/
+// Code Snippet taken from https://www.thatstevensguy.com/programming/disable-arrows-on-number-inputs/
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+ 
+input[type="number"] {
+    -moz-appearance: textfield;
+}

@@ -1,41 +1,44 @@
 <div class="row animated fadeInDown">
 
   <div class="col">
-    <button type="button" class="btn btn-block btn-primary wave-light" mdbRippleRadius>Graphics View</button>
+    <button type="button" class="btn btn-block btn-primary wave-light" (click)="onClickRoadMapView()" mdbRippleRadius>Road Map View</button>
   </div>
 
   <div class="col">
-    <button type="button" class="btn btn-block btn-default wave-light" mdbRippleRadius>Satellite View</button>
+    <button type="button" class="btn btn-block btn-default wave-light" (click)="onClickSatelliteView()" mdbRippleRadius>Satellite View</button>
   </div>
 
 </div>
+
+<hr>
 
 <div class="row pt-2 animated fadeInDown">
 
-  <div class="col">
-    <button type="button" class="btn btn-block btn-info wave-light" mdbRippleRadius>Use Coordinates instead</button>
+  <div class="col" *ngIf="!useCoordinates">
+    <button type="button" class="btn btn-block btn-success wave-light" (click)="onClickCalculate()" mdbRippleRadius>Calculate area</button>
   </div>
 
   <div class="col">
-    <button type="button" class="btn btn-block btn-success wave-light" mdbRippleRadius>Calculate area</button>
-
+    <button type="button" class="btn btn-block btn-info wave-light" (click)="onClickUseCoordinates()" mdbRippleRadius>{{ coordinatesButtonText }}</button>
   </div>
+
 </div>
 
-<form class="pt-2">
+
+<form class="pt-2" *ngIf="useCoordinates">
 
   <div class="md-form animated fadeInDown">
-    <input type="text" class="form-control" id="latInput" mdbActive>
+    <input type="number" class="form-control" id="latInput" [(ngModel)]="latitudeInput" name="latitudeInput" mdbActive>
     <label for="Latitude">Latitude</label>
   </div>
 
   <div class="md-form animated fadeInDown">
-    <input type="text" class="form-control" id="lngInput" mdbActive>
+    <input type="number" class="form-control" id="lngInput" [(ngModel)]="longitudeInput" name="longitudeInput" mdbActive>
     <label for="Longitude">Longitude</label>
   </div>
 
-  <button type="button" class="btn btn-block btn-secondary wave-light animated fadeInDown" mdbRippleRadius>Show on map</button>
-  <button type="submit" class="btn btn-block btn-success wave-light animated fadeInDown" mdbRippleRadius>Calculate area</button>
-  <button type="reset" class="btn btn-block btn-danger wave-light animated fadeInDown" mdbRippleRadius>Clear coordinates</button>
+  <button type="button" class="btn btn-block btn-secondary wave-light animated fadeInDown" (click)="onClickShowOnMap()" mdbRippleRadius>Show on map</button>
+  <button type="submit" class="btn btn-block btn-success wave-light animated fadeInDown" (click)="onClickCalculate()" mdbRippleRadius>Calculate area</button>
+  <button type="reset" class="btn btn-block btn-danger wave-light animated fadeInDown" (click)="onClickClearCoordinates()" mdbRippleRadius>Clear coordinates</button>
 
 </form>

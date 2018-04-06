@@ -1,6 +1,10 @@
 <div class="row animated fadeInDown">
   <div class="col px-5">
-    <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-map 
+      [latitude]="lat" 
+      [longitude]="lng" 
+      [mapTypeId]="mapTypeId"
+      (mapClick)="getCoordinates($event)">
       <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
     </agm-map>
   </div>
@@ -9,7 +13,12 @@
 <div class="container text-center">
   <div class="row pt-3">
     <div class="col">
-      <app-map-options></app-map-options>
+      <app-map-options
+        (roadMapViewClicked)="onRoadMapViewClicked($event)"
+        (satelliteViewClicked)="onSatelliteViewClicked($event)"
+        [latitudeMarker]="lat"
+        [longitudeMarker]="lng">
+      </app-map-options>
     </div>
   </div>
 </div>
