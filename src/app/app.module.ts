@@ -10,9 +10,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { ServerMapComponent } from './server-map/server-map.component';
-import { UserMapComponent } from './user-map/user-map.component';
-import { MapOptionsComponent } from './user-map/map-options/map-options.component';
+import { ServerMapComponent } from './calculate/server-map/server-map.component';
+import { UserMapComponent } from './calculate/user-map/user-map.component';
+import { MapOptionsComponent } from './calculate/user-map/map-options/map-options.component';
 import { HomeComponent } from './home/home.component';
 import { CalculateComponent } from './calculate/calculate.component';
 import { ToolsComponent } from './tools/tools.component';
