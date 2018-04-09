@@ -4,23 +4,11 @@
   </div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
   <div class="col">
     <button class="btn btn-primary" (click)="calculated = !calculated">Calculate Area</button>
   </div>
-</div>
+</div> -->
 
 <router-outlet></router-outlet>
 <!-- Routed views go here -->
-
-<div class="row">
-  <div class="col" *ngIf="calculated">
-    <app-server-map></app-server-map>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col">
-    <app-user-map></app-user-map>
-  </div>
-</div>
