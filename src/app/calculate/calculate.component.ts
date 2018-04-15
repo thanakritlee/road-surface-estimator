@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculateComponent implements OnInit {
 
+  calculated: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
