@@ -14,6 +14,10 @@ export class UserMapComponent implements OnInit {
   // Initialising Google Maps mapTypeId.
   mapTypeId: string = "roadmap";
 
+  // Maps gesture type.
+  // gestureType: string = 'greedy';
+  gestureType: string = 'auto';
+
   constructor() { }
 
   ngOnInit() {
