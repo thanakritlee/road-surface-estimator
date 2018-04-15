@@ -2,28 +2,28 @@
   <div class="col">
     <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-red ie-nav" [containerInside]="false">
       <logo>
-        <a class="logo navbar-brand" href="home">
+        <a class="logo navbar-brand" [routerLink]="['/home']">
           <strong>Road Surface Area Estimator</strong>
         </a>
       </logo>
       <links>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item waves-light" mdbRippleRadius>
-            <a class="nav-link" href="home">Home
+            <a class="nav-link" [routerLink]="['/home']">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item waves-light" mdbRippleRadius>
-            <a class="nav-link" href="calculate">Calculate Road Surface Area</a>
+            <a class="nav-link" [routerLink]="['/calculate']">Calculate Road Surface Area</a>
           </li>
           <li class="nav-item waves-light" mdbRippleRadius>
-            <a class="nav-link" href="tools">Tools</a>
+            <a class="nav-link" [routerLink]="['/tools']">Tools</a>
           </li>
           <li class="nav-item waves-light" mdbRippleRadius>
-            <a class="nav-link" href="references">References</a>
+            <a class="nav-link" [routerLink]="['/references']">References</a>
           </li>
           <li class="nav-item waves-light" mdbRippleRadius>
-            <a class="nav-link" href="about">About</a>
+            <a class="nav-link" [routerLink]="['/about']">About</a>
           </li>
         </ul>
         <ul class="navbar-nav nav-flex-icons">
