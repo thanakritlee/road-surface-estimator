@@ -1,10 +1,6 @@
-import {
-  Component,
-  OnInit,
-  EventEmitter,
-  Output,
-  Input
-} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+
+import { AreaCalculationService } from '../../../app-services/area-calculation/area-calculation.service';
 
 @Component({
   selector: 'app-map-options',
@@ -27,7 +23,9 @@ export class MapOptionsComponent implements OnInit {
   @Input() latitudeMarker: number;
   @Input() longitudeMarker: number;
 
-  constructor() {}
+  constructor(
+    private areaCalculationService: AreaCalculationService
+  ) {}
 
   ngOnInit() {}
 
@@ -59,6 +57,15 @@ export class MapOptionsComponent implements OnInit {
     } else {
       console.log(this.latitudeMarker);
       console.log(this.longitudeMarker);
+
+      this.areaCalculationService.getConnectionToServer().subscribe(
+        res => {
+          console.log('inside subscribe');
+          console.log(res.text);
+        },
+      );
+      console.log('after http.get');
+
     }
   }
 

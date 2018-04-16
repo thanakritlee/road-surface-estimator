@@ -6,8 +6,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AgmCoreModule } from '@agm/core';
-import { RouterModule, Routes } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
+// Angular components
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ServerMapComponent } from './calculate/server-map/server-map.component';
@@ -19,16 +20,11 @@ import { ToolsComponent } from './tools/tools.component';
 import { ReferencesComponent } from './references/references.component';
 import { AboutComponent } from './about/about.component';
 
+// Routing module
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
-// Application URL routes.
-const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'calculate', component: CalculateComponent },
-  { path: 'tools', component: ToolsComponent },
-  { path: 'references', component: ReferencesComponent },
-  { path: 'about', component: AboutComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
-];
+// Services
+import { AreaCalculationService } from './app-services/area-calculation/area-calculation.service';
 
 
 @NgModule({
@@ -52,10 +48,17 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyD5blFhmJvoOhORIYKX0JjKo5V8Vhbpq2s'
     }),
     MDBBootstrapModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule,
+    HttpModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  providers: [
+    /**
+     * Adding a service to the providers array of the root module makes it
+     * available throughout the app.
+     */
+    AreaCalculationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
