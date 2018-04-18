@@ -21,8 +21,8 @@ export class AreaCalculationService {
    * Uncomment deploymentServerApi when deploying the project on a hosting 
    * service.
    */
-  private developmentServerApi = 'http://localhost:8080/api/area_calculation/';
-  // private deploymentServerApi = 'api/area_calculation/';
+  // private developmentServerApi = 'http://localhost:8080/api/area_calculation/';
+  private deploymentServerApi = 'api/area_calculation/';
 
   public getConnectionToServer(): Observable<{text: string}> {
     let URI = this.developmentServerApi;
