@@ -23,9 +23,9 @@ export class AreaCalculationService {
    */
 
   // develop server api:
-  private serverApi = 'http://localhost:8080/api/area_calculation/';
+  // private serverApi = 'http://localhost:8080/api/area_calculation/';
   // production server api:
-  // private serverApi = 'api/area_calculation/';
+  private serverApi = 'api/area_calculation/';
 
   public getConnectionToServer(): Observable<{text: string}> {
     let URI = this.serverApi;
