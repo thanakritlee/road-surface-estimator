@@ -8,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class UserMapComponent implements OnInit {
 
   // Default/Starting coordinates on Google Maps.
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  // lat: number = 51.678418;
+  // lng: number = 7.809007;
+  lat: number = -37.7027525;
+  lng: number = 145.0294733;
 
   // Initialising Google Maps mapTypeId.
   mapTypeId: string = "roadmap";
