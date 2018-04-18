@@ -1,10 +1,6 @@
-import {
-  Component,
-  OnInit,
-  EventEmitter,
-  Output,
-  Input
-} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+
+import { AreaCalculationService } from '../../../app-services/area-calculation/area-calculation.service';
 
 @Component({
   selector: 'app-map-options',
@@ -19,15 +15,19 @@ export class MapOptionsComponent implements OnInit {
   // boolean for displaying or hidding the coordinate input options.
   useCoordinates: boolean = false;
 
-  coordinatesButtonText: string = "Use Coordinates instead";
+  coordinatesButtonText: string = "Use Coordinates";
 
   longitudeInput: number;
   latitudeInput: number;
+
+  totalSurfaceArea: number;
   
   @Input() latitudeMarker: number;
   @Input() longitudeMarker: number;
 
-  constructor() {}
+  constructor(
+    private areaCalculationService: AreaCalculationService
+  ) {}
 
   ngOnInit() {}
 
@@ -52,19 +52,29 @@ export class MapOptionsComponent implements OnInit {
   }
 
   onClickCalculate() {
-    console.log('Calculate Area...');
     if (this.useCoordinates) {
       console.log(this.latitudeInput);
       console.log(this.longitudeInput);
+      this.calculateSurfaceArea(this.latitudeInput, this.longitudeInput);
     } else {
       console.log(this.latitudeMarker);
       console.log(this.longitudeMarker);
+      this.calculateSurfaceArea(this.latitudeMarker, this.longitudeMarker);
     }
+  }
+
+  calculateSurfaceArea(lat: number, lng: number) {
+    this.areaCalculationService.getTotalSurfaceArea(lat, lng).subscribe(
+      res => {
+        this.totalSurfaceArea = res;
+        console.log(this.totalSurfaceArea);
+      },
+    );
   }
 
   onClickUseCoordinates() {
     this.useCoordinates = !this.useCoordinates;
-    this.coordinatesButtonText = this.useCoordinates ? "Use Map Marker instead" : "Use Coordinates instead";
+    this.coordinatesButtonText = this.useCoordinates ? "Use Map Marker" : "Use Coordinates";
   }
 
   onClickClearCoordinates() {
