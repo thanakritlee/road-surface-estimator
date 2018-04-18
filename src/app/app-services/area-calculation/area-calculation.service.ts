@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
 
+
 @Injectable()
 export class AreaCalculationService {
 
@@ -28,6 +29,14 @@ export class AreaCalculationService {
     return this.http.get(URI)
       .map(res => res.json())
       .map(res => <{text: string}>res);
+  }
+
+  public getTotalSurfaceArea(lat: number, lng: number): Observable<number> {
+    let URI = this.developmentServerApi;
+    let data = {lat, lng};
+    return this.http.post(URI, data)
+      .map(res => res.json())
+      .map(res => <number>res);
   }
 
 }
