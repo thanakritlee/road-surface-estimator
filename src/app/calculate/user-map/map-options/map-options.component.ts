@@ -21,6 +21,8 @@ export class MapOptionsComponent implements OnInit {
   latitudeInput: number;
 
   totalSurfaceArea: number;
+
+  calculationLoading: boolean = false;
   
   @Input() latitudeMarker: number;
   @Input() longitudeMarker: number;
@@ -52,6 +54,7 @@ export class MapOptionsComponent implements OnInit {
   }
 
   onClickCalculate() {
+    this.calculationLoading = true;
     if (this.useCoordinates) {
       console.log(this.latitudeInput);
       console.log(this.longitudeInput);
@@ -68,6 +71,7 @@ export class MapOptionsComponent implements OnInit {
       res => {
         this.totalSurfaceArea = res;
         console.log(this.totalSurfaceArea);
+        this.calculationLoading = false;
       },
     );
   }
