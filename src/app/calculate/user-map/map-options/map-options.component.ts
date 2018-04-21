@@ -12,7 +12,7 @@ export class MapOptionsComponent implements OnInit {
   @Output() roadMapViewClicked = new EventEmitter < boolean > ();
   @Output() satelliteViewClicked = new EventEmitter < boolean > ();
   @Output() showOnMapClicked = new EventEmitter < {lat: number, lng: number} > ();
-
+  
   // boolean for displaying or hidding the coordinate input options.
   useCoordinates: boolean = false;
 
@@ -23,7 +23,7 @@ export class MapOptionsComponent implements OnInit {
 
   totalSurfaceArea: number;
 
-  calculationLoading: boolean = false;
+  calculated: boolean = false;
   
   @Input() latitudeMarker: number;
   @Input() longitudeMarker: number;
@@ -55,7 +55,7 @@ export class MapOptionsComponent implements OnInit {
   }
 
   onClickCalculate() {
-    this.calculationLoading = true;
+    this.calculated = false;
     if (this.useCoordinates) {
       console.log(this.latitudeInput);
       console.log(this.longitudeInput);
@@ -71,9 +71,11 @@ export class MapOptionsComponent implements OnInit {
   calculateSurfaceArea(lat: number, lng: number) {
     this.areaCalculationService.getTotalSurfaceArea(lat, lng).subscribe(
       res => {
-        this.totalSurfaceArea = res;
+        // Round the total surface area result to 5 decimal precision point.
+        // Convert it back to number.
+        this.totalSurfaceArea = Number(Number.parseFloat("" + res).toPrecision(5));
         console.log(this.totalSurfaceArea);
-        this.calculationLoading = false;
+        this.calculated = true;
       },
     );
   }
