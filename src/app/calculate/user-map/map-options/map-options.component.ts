@@ -27,7 +27,7 @@ export class MapOptionsComponent implements OnInit {
 
   // Map change view button text.
   // "Road View" or "Satellite View".
-  mapViewButtonText: string = "Road View";
+  mapViewButtonText: string = "Satellite View";
   mapViewButtonTextBool: boolean = false;
 
   // Map change style button text.
@@ -51,7 +51,7 @@ export class MapOptionsComponent implements OnInit {
      * let the parent component who recieve the emitted event
      * decide if roadmap or satellite view change.
      */
-    this.mapViewButtonText = this.mapViewButtonTextBool ? "Road View" : "Satellite View";
+    this.mapViewButtonText = this.mapViewButtonTextBool ? "Satellite View" : "Road View";
     this.mapViewButtonTextBool = !this.mapViewButtonTextBool;
     this.mapViewClicked.emit(true);
   }
