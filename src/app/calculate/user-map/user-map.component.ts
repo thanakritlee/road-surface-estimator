@@ -14,6 +14,7 @@ export class UserMapComponent implements OnInit {
 
   // Initialising Google Maps mapTypeId.
   mapTypeId: string = "roadmap";
+  mapTypeIdBool: boolean = false;
 
   // Maps gesture type.
   // gestureType: string = 'greedy';
@@ -281,16 +282,11 @@ export class UserMapComponent implements OnInit {
   ngOnInit() {
   }
 
-  onRoadMapViewClicked(bool: boolean) {
-    this.mapTypeId = "roadmap";
-    console.log('Received event in user-map: roadmap');
+  onMapViewClicked(bool: boolean) {
+    this.mapTypeId = this.mapTypeIdBool ? "roadmap" : "satellite";
+    this.mapTypeIdBool = !this.mapTypeIdBool;
   }
-
-  onSatelliteViewClicked(bool: boolean) {
-    this.mapTypeId = "satellite";
-    console.log('Received event in user-map: satellite');
-  }
-
+  
   onChangeStyleClicked(bool: boolean) {
     this.style = this.styleDefaultBool ? this.styleRoad : [];
     this.styleDefaultBool = !this.styleDefaultBool;

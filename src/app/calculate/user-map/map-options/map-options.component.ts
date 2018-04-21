@@ -9,8 +9,7 @@ import { AreaCalculationService } from '../../../app-services/area-calculation/a
 })
 export class MapOptionsComponent implements OnInit {
 
-  @Output() roadMapViewClicked = new EventEmitter < boolean > ();
-  @Output() satelliteViewClicked = new EventEmitter < boolean > ();
+  @Output() mapViewClicked = new EventEmitter < boolean > ();
   @Output() showOnMapClicked = new EventEmitter < {lat: number, lng: number} > ();
   @Output() changeStyleClicked = new EventEmitter < boolean > ();
   
@@ -26,6 +25,11 @@ export class MapOptionsComponent implements OnInit {
 
   calculated: boolean = false;
 
+  // Map change view button text.
+  // "Road View" or "Satellite View".
+  mapViewButtonText: string = "Road View";
+  mapViewButtonTextBool: boolean = false;
+
   // Map change style button text.
   styleButtonTextBool: boolean = false;
   styleButtonText: string = "Road Only";
@@ -39,26 +43,19 @@ export class MapOptionsComponent implements OnInit {
 
   ngOnInit() {}
 
-  onClickRoadMapView() {
+  onClickMapView() {
     /**
-     * Change Google Maps type to roadmap view.
+     * Change Google Maps type to roadmap or satellite view.
      * 
-     * Emits the roadmap event.
+     * Emits a boolean true to indicate button activation and
+     * let the parent component who recieve the emitted event
+     * decide if roadmap or satellite view change.
      */
-    this.roadMapViewClicked.emit(true);
-    console.log('Event Emit from map-option: roadmap');
+    this.mapViewButtonText = this.mapViewButtonTextBool ? "Road View" : "Satellite View";
+    this.mapViewButtonTextBool = !this.mapViewButtonTextBool;
+    this.mapViewClicked.emit(true);
   }
-
-  onClickSatelliteView() {
-    /**
-     * Change Google Maps type to sattelite view.
-     * 
-     * Emits the satellite event.
-     */
-    this.satelliteViewClicked.emit(true);
-    console.log('Event Emit from map-option: satellite');
-  }
-
+  
   onClickChangeStyle() {
     /**
      * Change the style of the map from default style to show only the roads.
