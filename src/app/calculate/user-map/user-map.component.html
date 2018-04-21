@@ -1,5 +1,6 @@
+<div class="container-fluid">
 <div class="row">
-  <div class="col px-5">
+  <div class="col-md-8 px-5">
     <agm-map 
       [latitude]="lat" 
       [longitude]="lng" 
@@ -9,9 +10,27 @@
       <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
     </agm-map>
   </div>
+
+  <div class="col-md-4">
+    <div class="container text-center">
+      <div class="row pt-3">
+        <div class="col">
+          <app-map-options
+            (roadMapViewClicked)="onRoadMapViewClicked($event)"
+            (satelliteViewClicked)="onSatelliteViewClicked($event)"
+            (showOnMapClicked)="onShowOnMapClicked($event)"
+            [latitudeMarker]="lat"
+            [longitudeMarker]="lng">
+          </app-map-options>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
-<div class="container text-center">
+
+<!-- <div class="container text-center">
   <div class="row pt-3">
     <div class="col">
       <app-map-options
@@ -22,4 +41,4 @@
       </app-map-options>
     </div>
   </div>
-</div>
+</div> -->

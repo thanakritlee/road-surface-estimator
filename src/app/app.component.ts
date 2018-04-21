@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title: string = 'app';
   calculated: boolean = false;
+
+  version: string = "1.3.0";
 }

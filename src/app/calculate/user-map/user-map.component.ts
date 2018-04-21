@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class UserMapComponent implements OnInit {
 
   // Default/Starting coordinates on Google Maps.
-  // lat: number = 51.678418;
-  // lng: number = 7.809007;
   lat: number = -37.7027525;
   lng: number = 145.0294733;
 
@@ -33,6 +31,11 @@ export class UserMapComponent implements OnInit {
   onSatelliteViewClicked(bool: boolean) {
     this.mapTypeId = "satellite";
     console.log('Received event in user-map: satellite');
+  }
+
+  onShowOnMapClicked(coordinates: {lat: number, lng: number}) {
+    this.lat = coordinates.lat;
+    this.lng = coordinates.lng;
   }
 
   getCoordinates(coordinates: {coords: {lat: number, lng: number}}) {

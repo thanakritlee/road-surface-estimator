@@ -11,6 +11,7 @@ export class MapOptionsComponent implements OnInit {
 
   @Output() roadMapViewClicked = new EventEmitter < boolean > ();
   @Output() satelliteViewClicked = new EventEmitter < boolean > ();
+  @Output() showOnMapClicked = new EventEmitter < {lat: number, lng: number} > ();
 
   // boolean for displaying or hidding the coordinate input options.
   useCoordinates: boolean = false;
@@ -21,6 +22,8 @@ export class MapOptionsComponent implements OnInit {
   latitudeInput: number;
 
   totalSurfaceArea: number;
+
+  calculationLoading: boolean = false;
   
   @Input() latitudeMarker: number;
   @Input() longitudeMarker: number;
@@ -52,9 +55,11 @@ export class MapOptionsComponent implements OnInit {
   }
 
   onClickCalculate() {
+    this.calculationLoading = true;
     if (this.useCoordinates) {
       console.log(this.latitudeInput);
       console.log(this.longitudeInput);
+      this.onClickShowOnMap();
       this.calculateSurfaceArea(this.latitudeInput, this.longitudeInput);
     } else {
       console.log(this.latitudeMarker);
@@ -68,6 +73,7 @@ export class MapOptionsComponent implements OnInit {
       res => {
         this.totalSurfaceArea = res;
         console.log(this.totalSurfaceArea);
+        this.calculationLoading = false;
       },
     );
   }
@@ -87,6 +93,7 @@ export class MapOptionsComponent implements OnInit {
     /**
      * Emit the latitudeInput and longitudeInput data to the parent component, eg. app-user-map.
      */
+    this.showOnMapClicked.emit({lat: this.latitudeInput, lng: this.longitudeInput});
     console.log('Show on map');
   }
 }
