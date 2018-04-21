@@ -1,63 +1,73 @@
-<div class="row pb-5">
-  <div class="col">
-    <app-navigation-bar></app-navigation-bar>
+<div class="container-fluid">
+
+  <div class="row pb-5">
+    <div class="col">
+      <app-navigation-bar></app-navigation-bar>
+    </div>
   </div>
-</div>
-
-<router-outlet></router-outlet>
-<!-- Routed views go here -->
-
-
-
-
-
+  
+  <router-outlet></router-outlet>
+  <!-- Routed views go here -->
 
   <!--Footer-->
   <footer class="page-footer blue pt-4 mt-4">
 
-      <!--Footer Links-->
-      <div class="container-fluid text-center text-md-left">
-          <div class="row">
-  
-              <!--First column-->
-              <!-- <div class="col-md-6">
+    <!--Footer Links-->
+    <div class="container-fluid text-center text-md-left">
+      <div class="row">
+
+        <!--First column-->
+        <!-- <div class="col-md-6">
                   <h5 class="title">Footer Content</h5>
                   <p>Here you can use rows and columns here to organize your footer content.</p>
               </div> -->
-              <!--/.First column-->
-  
-              <!--Second column-->
-              <div class="col-md-4"></div>
-              <div class="col-md-3">
-                <h5 class="title pb-1">Resources</h5>
-                  <ul class="list-unstyled">
-                      <li><a [routerLink]="['/home']">Home</a></li>
-                      <li><a [routerLink]="['/calculate']">Road Calculation</a></li>
-                      <li><a [routerLink]="['/tools']">Tools</a></li>
-                      <li><a [routerLink]="['/references']">References</a></li>
-                      <li><a [routerLink]="['/about']">About</a></li>
-                  </ul>
-              </div>
-              <div class="col-md-3">
-                <h5 class="title pb-1">Community</h5>
-                <ul class="list-unstyled">
-                  <li><a href="https://github.com/tlee38/road-surface-estimator">GitHub</a></li>
-                </ul>
-              </div>
-              <div class="col-md-4"></div>
-              <!--/.Second column-->
-          </div>
+        <!--/.First column-->
+
+        <!--Second column-->
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h5 class="title pb-1">Resources</h5>
+          <ul class="list-unstyled">
+            <li>
+              <a [routerLink]="['/home']">Home</a>
+            </li>
+            <li>
+              <a [routerLink]="['/calculate']">Road Calculation</a>
+            </li>
+            <li>
+              <a [routerLink]="['/tools']">Tools</a>
+            </li>
+            <li>
+              <a [routerLink]="['/references']">References</a>
+            </li>
+            <li>
+              <a [routerLink]="['/about']">About</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="title pb-1">Community</h5>
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://github.com/tlee38/road-surface-estimator">GitHub</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4"></div>
+        <!--/.Second column-->
       </div>
-      <!--/.Footer Links-->
-  
-      <!--Copyright-->
-      <div class="footer-copyright text-center py-3">
-          <div class="container-fluid">
-              Version {{ version }} <a href="https://github.com/tlee38/road-surface-estimator"> GitHub </a>
-          </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <!--Copyright-->
+    <div class="footer-copyright text-center py-3">
+      <div class="container-fluid">
+        Version {{ version }}
+        <a href="https://github.com/tlee38/road-surface-estimator"> GitHub </a>
       </div>
-      <!--/.Copyright-->
+    </div>
+    <!--/.Copyright-->
   </footer>
   <!--/.Footer-->
-  
-                    
+
+</div>
