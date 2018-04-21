@@ -12,7 +12,8 @@ export class MapOptionsComponent implements OnInit {
   @Output() roadMapViewClicked = new EventEmitter < boolean > ();
   @Output() satelliteViewClicked = new EventEmitter < boolean > ();
   @Output() showOnMapClicked = new EventEmitter < {lat: number, lng: number} > ();
-
+  @Output() changeStyleClicked = new EventEmitter < boolean > ();
+  
   // boolean for displaying or hidding the coordinate input options.
   useCoordinates: boolean = false;
 
@@ -23,7 +24,11 @@ export class MapOptionsComponent implements OnInit {
 
   totalSurfaceArea: number;
 
-  calculationLoading: boolean = false;
+  calculated: boolean = false;
+
+  // Map change style button text.
+  styleButtonTextBool: boolean = false;
+  styleButtonText: string = "Road Only";
   
   @Input() latitudeMarker: number;
   @Input() longitudeMarker: number;
@@ -54,8 +59,19 @@ export class MapOptionsComponent implements OnInit {
     console.log('Event Emit from map-option: satellite');
   }
 
+  onClickChangeStyle() {
+    /**
+     * Change the style of the map from default style to show only the roads.
+     */
+    this.changeStyleClicked.emit(true);
+
+    // Change the button's text;
+    this.styleButtonText = this.styleButtonTextBool ? "Road Only" : "Default Style";
+    this.styleButtonTextBool = !this.styleButtonTextBool;
+  }
+
   onClickCalculate() {
-    this.calculationLoading = true;
+    this.calculated = false;
     if (this.useCoordinates) {
       console.log(this.latitudeInput);
       console.log(this.longitudeInput);
@@ -71,9 +87,11 @@ export class MapOptionsComponent implements OnInit {
   calculateSurfaceArea(lat: number, lng: number) {
     this.areaCalculationService.getTotalSurfaceArea(lat, lng).subscribe(
       res => {
-        this.totalSurfaceArea = res;
+        // Round the total surface area result to 5 decimal precision point.
+        // Convert it back to number.
+        this.totalSurfaceArea = Number(Number.parseFloat("" + res).toPrecision(5));
         console.log(this.totalSurfaceArea);
-        this.calculationLoading = false;
+        this.calculated = true;
       },
     );
   }
