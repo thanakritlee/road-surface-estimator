@@ -6,7 +6,15 @@
       [mapTypeId]="mapTypeId"
       [gestureHandling]="gestureType"
       (mapClick)="getCoordinates($event)">
-      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      <agm-marker 
+        [latitude]="lat"
+        [longitude]="lng"
+        [markerDraggable]="true"
+        (dragEnd)="makerDragEnd($event)">
+        <agm-info-window>
+          {{ lat }}, {{ lng }}
+        </agm-info-window>
+      </agm-marker>
     </agm-map>
   </div>
 

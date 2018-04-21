@@ -52,4 +52,9 @@ export class UserMapComponent implements OnInit {
     this.lng = coordinates.coords.lng;
   }
 
+  makerDragEnd($event: any) {
+    this.lat = $event.coords.lat;
+    this.lng = $event.coords.lng;
+  }
+
 }
