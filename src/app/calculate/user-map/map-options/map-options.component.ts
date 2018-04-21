@@ -12,6 +12,7 @@ export class MapOptionsComponent implements OnInit {
   @Output() roadMapViewClicked = new EventEmitter < boolean > ();
   @Output() satelliteViewClicked = new EventEmitter < boolean > ();
   @Output() showOnMapClicked = new EventEmitter < {lat: number, lng: number} > ();
+  @Output() changeStyleClicked = new EventEmitter < boolean > ();
   
   // boolean for displaying or hidding the coordinate input options.
   useCoordinates: boolean = false;
@@ -24,6 +25,10 @@ export class MapOptionsComponent implements OnInit {
   totalSurfaceArea: number;
 
   calculated: boolean = false;
+
+  // Map change style button text.
+  styleButtonTextBool: boolean = false;
+  styleButtonText: string = "Road Only";
   
   @Input() latitudeMarker: number;
   @Input() longitudeMarker: number;
@@ -52,6 +57,17 @@ export class MapOptionsComponent implements OnInit {
      */
     this.satelliteViewClicked.emit(true);
     console.log('Event Emit from map-option: satellite');
+  }
+
+  onClickChangeStyle() {
+    /**
+     * Change the style of the map from default style to show only the roads.
+     */
+    this.changeStyleClicked.emit(true);
+
+    // Change the button's text;
+    this.styleButtonText = this.styleButtonTextBool ? "Road Only" : "Default Style";
+    this.styleButtonTextBool = !this.styleButtonTextBool;
   }
 
   onClickCalculate() {

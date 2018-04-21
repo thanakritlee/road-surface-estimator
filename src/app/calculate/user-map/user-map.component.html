@@ -5,6 +5,7 @@
       [longitude]="lng" 
       [mapTypeId]="mapTypeId"
       [gestureHandling]="gestureType"
+      [styles]="style"
       (mapClick)="getCoordinates($event)">
       <agm-marker 
         [latitude]="lat"
@@ -26,6 +27,7 @@
             (roadMapViewClicked)="onRoadMapViewClicked($event)"
             (satelliteViewClicked)="onSatelliteViewClicked($event)"
             (showOnMapClicked)="onShowOnMapClicked($event)"
+            (changeStyleClicked)="onChangeStyleClicked($event)"
             [latitudeMarker]="lat"
             [longitudeMarker]="lng">
           </app-map-options>
