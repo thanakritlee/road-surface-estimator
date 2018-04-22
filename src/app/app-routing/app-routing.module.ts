@@ -14,6 +14,7 @@ import { CalculateComponent } from '../calculate/calculate.component';
 import { ToolsComponent } from '../tools/tools.component';
 import { ReferencesComponent } from '../references/references.component';
 import { AboutComponent } from '../about/about.component';
+import { TutorialComponent } from '../tutorial/tutorial.component';
 
 // Application URL routes.
 const appRoutes: Routes = [
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'tools', component: ToolsComponent },
   { path: 'references', component: ReferencesComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'tutorial', component: TutorialComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
