@@ -22,6 +22,7 @@ export class MapOptionsComponent implements OnInit {
   latitudeInput: number;
 
   totalSurfaceArea: number;
+  elapsedTime: number;
 
   calculated: boolean = false;
 
@@ -86,7 +87,8 @@ export class MapOptionsComponent implements OnInit {
       res => {
         // Round the total surface area result to 5 decimal precision point.
         // Convert it back to number.
-        this.totalSurfaceArea = Number(Number.parseFloat("" + res).toPrecision(5));
+        this.totalSurfaceArea = Number(Number.parseFloat("" + res.area).toPrecision(5));
+        this.elapsedTime = Number(Number.parseFloat("" + (res.time / 1000)).toPrecision(5));
         console.log(this.totalSurfaceArea);
         this.calculated = true;
       },

@@ -39,12 +39,12 @@ export class AreaCalculationService {
       .map(res => <{text: string}>res);
   }
 
-  public getTotalSurfaceArea(lat: number, lng: number): Observable<number> {
+  public getTotalSurfaceArea(lat: number, lng: number): Observable<{area: number, time: number}> {
     let URI = this.serverApi;
     let data = {lat, lng};
     return this.http.post(URI, data)
       .map(res => res.json())
-      .map(res => <number>res);
+      .map(res => <{area: number, time: number}>res);
   }
 
 }

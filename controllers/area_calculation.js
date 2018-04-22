@@ -44,8 +44,8 @@ router.route('/')
          * Formula taken from:
          * https://groups.google.com/forum/#!topic/google-maps-js-api-v3/hDRO4oHVSeM
         */
-        
 
+        var startTime = Date.now();
 
         /**
          * ======================================================================================
@@ -162,14 +162,19 @@ router.route('/')
                 let zoom = 15;
                 let metersPerPx = 156543.03392 * Math.cos(coordinates.lat * Math.PI / 180) / Math.pow(2, zoom);
 
-                let totalSurfaceAreaKM = ((metersPerPx * roadPixelCounter) / 1000000);
+                let totalSurfaceAreaKM = (((metersPerPx * metersPerPx) * roadPixelCounter) / 1000000);
 
                 console.log("Road Pixels Count: " + roadPixelCounter);
                 console.log("Meters Per Pixel: " + metersPerPx);
                 // console.log("Total Surface area of roads: " + (metersPerPx * roadPixelCounter) + " square metre.");
                 console.log("Total Surface area of roads: " + totalSurfaceAreaKM + " square kilometre.");
 
-                res.json(totalSurfaceAreaKM);
+                // Get the elapsed time it take to construct the road image url
+                // and to calculate the total surface area of roads in the square 
+                // kilometre area.
+                var elapsedTime = Number(Date.now() - startTime);
+
+                res.json({area: totalSurfaceAreaKM, time: elapsedTime});
             }
         });
     });
