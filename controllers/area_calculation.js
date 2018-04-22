@@ -44,8 +44,8 @@ router.route('/')
          * Formula taken from:
          * https://groups.google.com/forum/#!topic/google-maps-js-api-v3/hDRO4oHVSeM
         */
-        
 
+        var startTime = Date.now();
 
         /**
          * ======================================================================================
@@ -130,21 +130,6 @@ router.route('/')
                 console.log(err);
             }
             else {
-                /* for (var i = 0; i < pixels.data.length; i += 4) {
-                    if (pixels.data[i] == 0 & pixels.data[i+1] == 0 & pixels.data[i+2] == 0 & pixels.data[i+3] != 0) {
-                        let rowPixel = (i + 1352) / 1352;
-                        let colPixel = ((i + 4) / 4) - (338 * (Math.floor(rowPixel) - 1));
-                        console.log("rowPixel: " + Math.floor(rowPixel));
-                        console.log("colPixel: " + colPixel);
-                        break;
-                    }
-                }
-                console.log('done'); */
-                /* for (let i of pixels.data) {
-                    console.log(i);
-                } */
-                
-
                 let index = 27040;
                 let roadPixelCounter = 0;
                 while (index <= 485367) {
@@ -158,18 +143,28 @@ router.route('/')
                 }
 
 
+                // Calculate the meters per pixel of the image in the Google Maps Static image URL.
                 let coordinates = {lat: req.body.lat, lng: req.body.lng};
                 let zoom = 15;
                 let metersPerPx = 156543.03392 * Math.cos(coordinates.lat * Math.PI / 180) / Math.pow(2, zoom);
 
-                let totalSurfaceAreaKM = ((metersPerPx * roadPixelCounter) / 1000000);
+                /**
+                 * Total surface area is calculated by:
+                 * 1. getting the surface area of a pixel.
+                 * 2. multiply the surface area of a pixel by the total number of pixels that are classified
+                 * as road pixels.
+                 * 3. divide the result by 1000000 to convert the total surface area from square metres to
+                 * square kilometres.
+                 */
+                let totalSurfaceAreaKM = (((metersPerPx * metersPerPx) * roadPixelCounter) / 1000000);
 
-                console.log("Road Pixels Count: " + roadPixelCounter);
-                console.log("Meters Per Pixel: " + metersPerPx);
-                // console.log("Total Surface area of roads: " + (metersPerPx * roadPixelCounter) + " square metre.");
-                console.log("Total Surface area of roads: " + totalSurfaceAreaKM + " square kilometre.");
+                // Get the elapsed time it take to construct the road image url
+                // and to calculate the total surface area of roads in the square 
+                // kilometre area.
+                var elapsedTime = Number(Date.now() - startTime);
 
-                res.json(totalSurfaceAreaKM);
+                // Return the response to client.
+                res.json({area: totalSurfaceAreaKM, time: elapsedTime});
             }
         });
     });

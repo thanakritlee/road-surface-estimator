@@ -20,9 +20,8 @@ export class UserMapComponent implements OnInit {
   // gestureType: string = 'greedy';
   gestureType: string = 'auto';
 
-  /**
-   * Style variables for agm Angular Google Maps styles @agm/core input.
-   */
+
+  // Style variables for AGM Angular Google Maps styles @agm/core input.
   styleDefaultBool: boolean = true;
   style: MapTypeStyle[] = [];
   styleRoad: MapTypeStyle[] = 
@@ -283,16 +282,30 @@ export class UserMapComponent implements OnInit {
   }
 
   onMapViewClicked(bool: boolean) {
+    /**
+     * Change between map view type of road map view and satellite view.
+     */
     this.mapTypeId = this.mapTypeIdBool ? "roadmap" : "satellite";
     this.mapTypeIdBool = !this.mapTypeIdBool;
   }
   
   onChangeStyleClicked(bool: boolean) {
+    /**
+     * Change the style of the map from normal defualt style to a style
+     * in which only roads are shown in dark colour and everything else is
+     * of light colour with no labels.
+     */
     this.style = this.styleDefaultBool ? this.styleRoad : [];
     this.styleDefaultBool = !this.styleDefaultBool;
   }
 
   onShowOnMapClicked(coordinates: {lat: number, lng: number}) {
+    /**
+     * Change the current marker coordinates to user form input coordinates.
+     * 
+     * Take the user form inputs of latitude and longitude coordinates
+     * and assign it to the marker coordinates.
+     */
     this.lat = coordinates.lat;
     this.lng = coordinates.lng;
   }
@@ -304,14 +317,19 @@ export class UserMapComponent implements OnInit {
      * Change marker location to new coordinates from mouse click event.
      * Change map center to new coordinates from mouse click event.
      */
-    console.log('Map clicked');
-    console.log(coordinates.coords.lat);
-    console.log(coordinates.coords.lng);
     this.lat = coordinates.coords.lat;
     this.lng = coordinates.coords.lng;
   }
 
   makerDragEnd($event: any) {
+    /**
+     * When user finished dragging a marker on the map this method is called
+     * with $event being a mouse event.
+     * 
+     * Get the coordinates of the mouse event location on the map and assign it
+     * to the current marker coordinates so that the marker new coordinates is
+     * where the mouse is when it stop dragging the marker.
+     */
     this.lat = $event.coords.lat;
     this.lng = $event.coords.lng;
   }

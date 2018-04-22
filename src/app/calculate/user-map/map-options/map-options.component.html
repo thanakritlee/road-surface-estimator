@@ -9,7 +9,9 @@
 
 <div class="row pt-2 animated fadeInDown">
   <div class="col text-center">
-    <p *ngIf="calculated">{{ totalSurfaceArea }} Square Kilometre</p>
+    <p *ngIf="calculated">The total surface area of road is {{ totalSurfaceArea }} square kilometre.</p>
+    <br>
+    <p *ngIf="calculated">Took {{ elapsedTime }} seconds to calculate.</p>
     <button *ngIf="!useCoordinates" type="button" class="btn btn-success wave-light" (click)="onClickCalculate()" mdbRippleRadius>Calculate area</button>
     <button type="button" class="btn btn-info wave-light" (click)="onClickUseCoordinates()" mdbRippleRadius>{{ coordinatesButtonText }}</button>
   </div>
