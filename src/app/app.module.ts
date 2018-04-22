@@ -25,6 +25,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 
 // Services
 import { AreaCalculationService } from './app-services/area-calculation/area-calculation.service';
+import { TutorialComponent } from './tutorial/tutorial.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { AreaCalculationService } from './app-services/area-calculation/area-cal
     ToolsComponent,
     ReferencesComponent,
     AboutComponent,
+    TutorialComponent,
   ],
   imports: [
     BrowserModule,
