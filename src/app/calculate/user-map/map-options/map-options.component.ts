@@ -9,6 +9,7 @@ import { AreaCalculationService } from '../../../app-services/area-calculation/a
 })
 export class MapOptionsComponent implements OnInit {
 
+  // Using Output decorator to emit the event from this component to parent component.
   @Output() mapViewClicked = new EventEmitter < boolean > ();
   @Output() showOnMapClicked = new EventEmitter < {lat: number, lng: number} > ();
   @Output() changeStyleClicked = new EventEmitter < boolean > ();
@@ -35,6 +36,8 @@ export class MapOptionsComponent implements OnInit {
   styleButtonTextBool: boolean = false;
   styleButtonText: string = "Road Only";
   
+  // Using Input decorator to get data pass from parent component when
+  // this when component selector is called.
   @Input() latitudeMarker: number;
   @Input() longitudeMarker: number;
 
@@ -69,39 +72,50 @@ export class MapOptionsComponent implements OnInit {
   }
 
   onClickCalculate() {
+    /**
+     * Check what coordinates input method to use for the calculation.
+     * Call a sub method that takes the coordinates and use it for
+     * calculation.
+     */
     this.calculated = false;
     if (this.useCoordinates) {
-      console.log(this.latitudeInput);
-      console.log(this.longitudeInput);
       this.onClickShowOnMap();
       this.calculateSurfaceArea(this.latitudeInput, this.longitudeInput);
     } else {
-      console.log(this.latitudeMarker);
-      console.log(this.longitudeMarker);
       this.calculateSurfaceArea(this.latitudeMarker, this.longitudeMarker);
     }
   }
 
   calculateSurfaceArea(lat: number, lng: number) {
+    /**
+     * Calls the calculation service which post the lat and lng data to the
+     * Express server API and get a return response of elapsed time and the
+     * surface area result.
+     */
     this.areaCalculationService.getTotalSurfaceArea(lat, lng).subscribe(
       res => {
         // Round the total surface area result to 5 decimal precision point.
         // Convert it back to number.
         this.totalSurfaceArea = Number(Number.parseFloat("" + res.area).toPrecision(5));
         this.elapsedTime = Number(Number.parseFloat("" + (res.time / 1000)).toPrecision(5));
-        console.log(this.totalSurfaceArea);
         this.calculated = true;
       },
     );
   }
 
   onClickUseCoordinates() {
+    /**
+     * Change "calculation" buttton visibility.
+     * Change button text.
+     */
     this.useCoordinates = !this.useCoordinates;
     this.coordinatesButtonText = this.useCoordinates ? "Use Map Marker" : "Use Coordinates";
   }
 
   onClickClearCoordinates() {
-    console.log('Clear coordinates');
+    /**
+     * Clear the form input field.
+     */
     this.latitudeInput = undefined;
     this.longitudeInput = undefined;
   }
@@ -111,6 +125,5 @@ export class MapOptionsComponent implements OnInit {
      * Emit the latitudeInput and longitudeInput data to the parent component, eg. app-user-map.
      */
     this.showOnMapClicked.emit({lat: this.latitudeInput, lng: this.longitudeInput});
-    console.log('Show on map');
   }
 }
