@@ -9,6 +9,11 @@ const cors = require('cors');
 // The dist directory is where Angular builds the Angular project files to.
 app.use(express.static(__dirname + '/dist'));
 
+app.all('/*', function(req, res, next) {
+    // Just send the index.html for other files to support HTML5Mode.
+    res.sendFile('index.html', { root: __dirname });
+});
+
 // Middleware for CORS.
 /**
  * Cross-Origin Resource Sharing
