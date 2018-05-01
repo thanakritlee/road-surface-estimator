@@ -6,13 +6,11 @@ import { RouterModule, Routes } from '@angular/router';
 // Angular components
 import { AppComponent } from '../app.component';
 import { NavigationBarComponent } from '../navigation-bar/navigation-bar.component';
-import { ServerMapComponent } from '../calculate/server-map/server-map.component';
 import { UserMapComponent } from '../calculate/user-map/user-map.component';
 import { MapOptionsComponent } from '../calculate/user-map/map-options/map-options.component';
 import { HomeComponent } from '../home/home.component';
 import { CalculateComponent } from '../calculate/calculate.component';
 import { ToolsComponent } from '../tools/tools.component';
-import { ReferencesComponent } from '../references/references.component';
 import { AboutComponent } from '../about/about.component';
 import { TutorialComponent } from '../tutorial/tutorial.component';
 
@@ -21,7 +19,6 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'calculate', component: CalculateComponent },
   { path: 'tools', component: ToolsComponent },
-  { path: 'references', component: ReferencesComponent },
   { path: 'about', component: AboutComponent },
   { path: 'tutorial', component: TutorialComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
