@@ -11,27 +11,23 @@
   <div class="col text-center">
     <p *ngIf="calculated">The total surface area of road is {{ totalSurfaceArea }} square kilometre.</p>
     <br>
-    <p *ngIf="calculated">Took {{ elapsedTime }} seconds to calculate.</p>
-    <button *ngIf="!useCoordinates" type="button" class="btn btn-success wave-light" (click)="onClickCalculate()" mdbRippleRadius>Calculate area</button>
-    <button type="button" class="btn btn-info wave-light" (click)="onClickUseCoordinates()" mdbRippleRadius>{{ coordinatesButtonText }}</button>
+    <p *ngIf="calculated">Took {{ elapsedTime }} seconds to calculate the result in the server.</p>
+    <br>
+    <p *ngIf="calculated">Took {{ elapsedTimeOverall }} seconds to calculate the result in the server and send it here (server calculation time + network communication time).</p>
+    <button type="button" class="btn btn-success wave-light" (click)="onClickCalculate()" mdbRippleRadius>Calculate area</button>
   </div>
 </div>
 
 
-<form class="pt-2" *ngIf="useCoordinates">
+<form class="pt-2">
 
   <div class="md-form animated fadeInDown">
-    <input type="number" class="form-control" id="latInput" [(ngModel)]="latitudeInput" name="latitudeInput" mdbActive>
+    <input type="number" class="form-control" id="latInput" [(ngModel)]="latitudeMarker" name="latitudeInput" (ngModelChange)="onClickShowOnMap()" mdbActive>
     <label for="Latitude">Latitude</label>
   </div>
 
   <div class="md-form animated fadeInDown">
-    <input type="number" class="form-control" id="lngInput" [(ngModel)]="longitudeInput" name="longitudeInput" mdbActive>
+    <input type="number" class="form-control" id="lngInput" [(ngModel)]="longitudeMarker" name="longitudeInput" (ngModelChange)="onClickShowOnMap()" mdbActive>
     <label for="Longitude">Longitude</label>
   </div>
-
-  <button type="button" class="btn btn-secondary wave-light animated fadeInDown" (click)="onClickShowOnMap()" mdbRippleRadius>Show on map</button>
-  <button type="submit" class="btn btn-success wave-light animated fadeInDown" (click)="onClickCalculate()" mdbRippleRadius>Calculate area</button>
-  <button type="reset" class="btn btn-danger wave-light animated fadeInDown" (click)="onClickClearCoordinates()" mdbRippleRadius>Clear coordinates</button>
-
 </form>
