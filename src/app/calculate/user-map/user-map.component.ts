@@ -24,6 +24,10 @@ export class UserMapComponent implements OnInit {
   // Style variables for AGM Angular Google Maps styles @agm/core input.
   styleDefaultBool: boolean = true;
   style: MapTypeStyle[] = [];
+  /**
+   * The Google Maps style "styleRoad" is a style which only shows the 
+   * roads in the map. The roads are coloured in dark grey.
+   */
   styleRoad: MapTypeStyle[] = 
     [
       {

@@ -13,17 +13,11 @@ export class MapOptionsComponent implements OnInit {
   @Output() mapViewClicked = new EventEmitter < boolean > ();
   @Output() showOnMapClicked = new EventEmitter < {lat: number, lng: number} > ();
   @Output() changeStyleClicked = new EventEmitter < boolean > ();
-  
-  // boolean for displaying or hidding the coordinate input options.
-  useCoordinates: boolean = false;
-
-  coordinatesButtonText: string = "Use Coordinates";
-
-  longitudeInput: number;
-  latitudeInput: number;
 
   totalSurfaceArea: number;
   elapsedTime: number;
+  elapsedTimeOverall: number;
+  
 
   calculated: boolean = false;
 
@@ -78,12 +72,7 @@ export class MapOptionsComponent implements OnInit {
      * calculation.
      */
     this.calculated = false;
-    if (this.useCoordinates) {
-      this.onClickShowOnMap();
-      this.calculateSurfaceArea(this.latitudeInput, this.longitudeInput);
-    } else {
-      this.calculateSurfaceArea(this.latitudeMarker, this.longitudeMarker);
-    }
+    this.calculateSurfaceArea(this.latitudeMarker, this.longitudeMarker);
   }
 
   calculateSurfaceArea(lat: number, lng: number) {
@@ -92,38 +81,23 @@ export class MapOptionsComponent implements OnInit {
      * Express server API and get a return response of elapsed time and the
      * surface area result.
      */
+    let startTime = Date.now();
     this.areaCalculationService.getTotalSurfaceArea(lat, lng).subscribe(
       res => {
         // Round the total surface area result to 5 decimal precision point.
         // Convert it back to number.
         this.totalSurfaceArea = Number(Number.parseFloat("" + res.area).toPrecision(5));
         this.elapsedTime = Number(Number.parseFloat("" + (res.time / 1000)).toPrecision(5));
+        this.elapsedTimeOverall = Number(Number.parseFloat("" + (Number(Date.now() - startTime)/ 1000)).toPrecision(5));
         this.calculated = true;
       },
     );
-  }
-
-  onClickUseCoordinates() {
-    /**
-     * Change "calculation" buttton visibility.
-     * Change button text.
-     */
-    this.useCoordinates = !this.useCoordinates;
-    this.coordinatesButtonText = this.useCoordinates ? "Use Map Marker" : "Use Coordinates";
-  }
-
-  onClickClearCoordinates() {
-    /**
-     * Clear the form input field.
-     */
-    this.latitudeInput = undefined;
-    this.longitudeInput = undefined;
   }
 
   onClickShowOnMap() {
     /**
      * Emit the latitudeInput and longitudeInput data to the parent component, eg. app-user-map.
      */
-    this.showOnMapClicked.emit({lat: this.latitudeInput, lng: this.longitudeInput});
+    this.showOnMapClicked.emit({lat: this.latitudeMarker, lng: this.longitudeMarker});
   }
 }

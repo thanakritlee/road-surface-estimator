@@ -6,10 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title: string = 'app';
-  calculated: boolean = false;
-
-  version: string = "1.3.0";
+  version: string = "2.1.0";
 
   onActivate(event) {
     /**
