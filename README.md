@@ -19,6 +19,7 @@ At the root directory, run `npm install` to install all node modules required.
 Run `node server.js` for a backend Express.JS server API.
 
 In the file `.\src\app\app-services\area-calculation\area-calculation.services.ts`:
+
 comment out the line :
 ```javascript
 private serverApi = 'api/area_calculation/';
