@@ -10,7 +10,24 @@ This application is part of my Monash University final year project for the Bach
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+## Installing Node Modules
+
+At the root directory, run `npm install` to install all node modules required.
+
 ## Development server
+
+Run `node server.js` for a backend Express.JS server API.
+
+In the file `.\src\app\app-services\area-calculation\area-calculation.services.ts`:
+comment out the line :
+```javascript
+private serverApi = 'api/area_calculation/';
+```
+and uncomment the line :
+```javascript
+private serverApi = 'http://localhost:8080/api/area_calculation/';
+```
+This configuration is required to redirect application to the correct server API address.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
