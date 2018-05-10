@@ -10,6 +10,23 @@ This application is part of my Monash University final year project for the Bach
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+## Node.js
+
+This project requires Node.js and npm package manager to install the dependencies and run the application.
+Grab the installation at [Node.js](https://nodejs.org/en/)
+
+## Angular CLI
+
+Before doing anything else make sure that you've got the Angular CLI installed globally on your system.
+
+```sh
+npm install -g @angular/cli
+```
+if the command requires administrative privilege then prefix the command with a ```sudo```.
+```sh
+sudo npm install -g @angular/cli
+```
+
 ## Installing Node Modules
 
 At the root directory, run `npm install` to install all node modules required.
