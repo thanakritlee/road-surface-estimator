@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 // Using 8080 as the port to listen to in development mode.
 const port = 8080;
 
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
     /**
      * The root directory of the server.
      * Send back 'Root' because the directory shouldn't be available for use.
